@@ -1,0 +1,26 @@
+{
+  "name": "package-b",
+  "version": "1.0.0",
+  "description": "> TODO: description",
+  "author": "noah <noah.hong@langlive.com>",
+  "homepage": "https://github.com/asde29873012549/lang-packages#readme",
+  "license": "ISC",
+  "main": "lib/package-B.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asde29873012549/lang-packages.git"
+  },
+  "scripts": {
+    "test": "node ./__tests__/package-B.test.js"
+  },
+  "bugs": {
+    "url": "https://github.com/asde29873012549/lang-packages/issues"
+  }
+}
