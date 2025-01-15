@@ -6,7 +6,7 @@
   ],
   "scripts": {
     "create": "lerna create",
-    "version": "lerna version",
+    "version": "lerna version --create-release github",
     "publish": "lerna publish from-git"
   },
   "devDependencies": {
