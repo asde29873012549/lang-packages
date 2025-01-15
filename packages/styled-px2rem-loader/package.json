@@ -1,6 +1,6 @@
 {
   "name": "@lang/styled-px2rem-loader",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A webpack loader that converts px to rem at buildtime",
   "keywords": [
     "webpack",
