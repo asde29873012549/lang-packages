@@ -3,12 +3,17 @@
   "version": "0.0.1",
   "description": "A webpack loader that converts px to rem at buildtime",
   "keywords": [
-    "\"webpack\""
+    "webpack",
+    "loader",
+    "px2rem",
+    "rem",
+    "css",
+    "styled-components"
   ],
   "author": "noah <noah.hong@langlive.com>",
   "homepage": "",
   "license": "ISC",
-  "main": "lib/styled-px2rem-loader.js",
+  "main": "lib/index.js",
   "directories": {
     "lib": "lib",
     "test": "__tests__"

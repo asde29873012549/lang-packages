@@ -1,11 +1,13 @@
 {
-  "name": "root",
+  "name": "@lang/packages",
   "private": true,
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "create": "lerna create"
+    "create": "lerna create",
+    "version": "lerna version",
+    "publish": "lerna publish from-git"
   },
   "devDependencies": {
     "lerna": "^8.1.9"
