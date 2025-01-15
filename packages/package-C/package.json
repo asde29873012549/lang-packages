@@ -1,0 +1,29 @@
+{
+  "name": "@lang/package-c",
+  "version": "1.0.0",
+  "description": "> TODO: description",
+  "author": "noah <noah.hong@langlive.com>",
+  "homepage": "https://github.com/asde29873012549/lang-packages#readme",
+  "license": "ISC",
+  "main": "lib/package-C.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "registry": "http://localhost:4873"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asde29873012549/lang-packages.git"
+  },
+  "scripts": {
+    "test": "node ./__tests__/@lang/package-C.test.js"
+  },
+  "bugs": {
+    "url": "https://github.com/asde29873012549/lang-packages/issues"
+  }
+}
