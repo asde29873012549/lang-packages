@@ -101,9 +101,7 @@ const isPureExpression = (expression) => {
   );
 };
 
-const getComponentName = (id) => {
-  return id && isIdentifier(id) ? id.name : null;
-};
+const getComponentName = (id) => id && isIdentifier(id) ? id.name : null;
 
 const isReturnJSX = (blockStatementPath) => {
   let hasJSX = false;
@@ -149,6 +147,7 @@ const isReactComponent = (id, path) => {
 const isFileDisabledByComment = (programPath) => {
   const comments = programPath.node?.body[0]?.leadingComments || [];
   const isCommentBlock = (node) => node.type === "CommentBlock";
+
   return comments.some(
     (comment) =>
       isCommentBlock(comment) && DISABLE_COMMENT_REGEX.test(comment.value),
