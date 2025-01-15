@@ -7,7 +7,8 @@
   "scripts": {
     "create": "lerna create",
     "version": "lerna version",
-    "publish": "lerna publish from-git"
+    "publish": "lerna publish from-git",
+    "release": "lerna publish"
   },
   "devDependencies": {
     "conventional-changelog-conventionalcommits": "^7.0.2",

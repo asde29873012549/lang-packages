@@ -47,7 +47,7 @@ module.exports = function (source) {
         );
 
         programPath.traverse({
-          // styled-components transform
+          // styled-components visitors
           TaggedTemplateExpression(taggedTemplatePath) {
             if (!isStyledTag(taggedTemplatePath)) return;
             taggedTemplatePath.traverse(templateVisitor);
@@ -58,7 +58,7 @@ module.exports = function (source) {
             callExpressionPath.traverse(templateVisitor);
           },
 
-          // React component transform
+          // React component visitors
           ...(config.transformJSX
             ? {
                 VariableDeclaration(variableDeclarationPath) {

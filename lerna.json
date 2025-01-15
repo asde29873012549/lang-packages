@@ -4,6 +4,10 @@
   "command": {
     "version": {
       "conventionalCommits": true
+    },
+    "publish": {
+      "allowBranch": "main",
+      "conventionalCommits": true
     }
   },
   "changelogPreset": {
