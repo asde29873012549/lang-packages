@@ -21,9 +21,7 @@ const process = (cssContent) => {
     ...others
   } = Config.getConfig();
   // use scss syntax to ensure the scss-like syntax in styled-components can be processed
-  return postcss([
-    px2rem({ ...others, rootValue: rootValue / multiplier }),
-  ]).process(cssContent, { syntax: scss }).css;
+  return postcss([px2rem({ ...others, rootValue: rootValue / multiplier })]).process(cssContent, { syntax: scss }).css;
 };
 
 const replacePxToRemInCss = (cssContent, retry = 2) => {
