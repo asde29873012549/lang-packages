@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.4](https://github.com/asde29873012549/lang-packages/compare/@lang/styled-px2rem-loader@1.0.3...@lang/styled-px2rem-loader@1.0.4) (2025-01-15)
+
+
+### ✅ Tests
+
+* 💍 fix test setup, get entry point from package.json ([83f23a4](https://github.com/asde29873012549/lang-packages/commit/83f23a432f62070433d25d498a681d3e2c794c1a))
+
+
+
 ## [1.0.3](https://github.com/asde29873012549/lang-packages/compare/@lang/styled-px2rem-loader@1.0.2...@lang/styled-px2rem-loader@1.0.3) (2025-01-15)
 
 
