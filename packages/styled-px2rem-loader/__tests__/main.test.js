@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const babel = require("@babel/core");
 
-const Config = require("../config");
+const Config = require("../lib/config");
 
 const extractDirectory = (dir) => {
   if (!fs.existsSync(dir)) {

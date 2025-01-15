@@ -25,7 +25,7 @@
     "access": "public"
   },
   "scripts": {
-    "test": "node ./__tests__/@lang/styled-px2rem-loader.test.js"
+    "test": "node --experimental-vm-modules ../../node_modules/.bin/jest"
   },
   "dependencies": {
     "@babel/template": "^7.25.9",

@@ -14,6 +14,11 @@ module.exports = (fixture, options = {}) => {
   memfs.mkdirSync(testDir, { recursive: true });
   memfs.writeFileSync(virtualFilePath, fixture, "utf-8");
 
+  // get package entry from package.json
+  const packageJsonPath = path.resolve(testDir, "package.json");
+  const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf-8"));
+  const entry = packageJson.main;
+
   // Create a Union filesystem combining memfs and the real fs
   const union = new Union();
   union.use(memfs).use(fs);
@@ -37,7 +42,7 @@ module.exports = (fixture, options = {}) => {
               },
             },
             {
-              loader: path.resolve(testDir, "index.js"),
+              loader: path.resolve(testDir, entry),
               options: {
                 rootValue: 3.75,
                 unitPrecision: 3,
