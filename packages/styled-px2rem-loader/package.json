@@ -12,7 +12,7 @@
   ],
   "author": "noah <noah.hong@langlive.com>",
   "homepage": "",
-  "license": "ISC",
+  "license": "MIT",
   "main": "lib/index.js",
   "directories": {
     "lib": "lib",
