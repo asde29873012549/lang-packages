@@ -10,7 +10,7 @@
     "publish": "lerna publish from-git"
   },
   "devDependencies": {
-    "conventional-changelog-conventionalcommits": "^8.0.0",
+    "conventional-changelog-conventionalcommits": "^7.0.2",
     "lerna": "^8.1.9"
   }
 }
