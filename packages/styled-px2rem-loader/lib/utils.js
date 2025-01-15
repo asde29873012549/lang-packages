@@ -140,14 +140,12 @@ const isReactComponent = (id, path) => {
   if (isFunctionDeclaration(path.node) || isFunctionExpression(path.node)) {
     return isReturnJSX(bodyPath);
   }
-
   return false;
 };
 
 const isFileDisabledByComment = (programPath) => {
   const comments = programPath.node?.body[0]?.leadingComments || [];
   const isCommentBlock = (node) => node.type === "CommentBlock";
-
   return comments.some(
     (comment) =>
       isCommentBlock(comment) && DISABLE_COMMENT_REGEX.test(comment.value),

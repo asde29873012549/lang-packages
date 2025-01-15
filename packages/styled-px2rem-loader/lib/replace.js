@@ -58,7 +58,7 @@ const replacePxToRemInCss = (cssContent, retry = 2) => {
       );
     }
 
-    console.error("Error replacing px to rem in css content:", cssContent);
+    console.error("Error replacing px to rem in css:", cssContent);
     return cssContent;
   }
 };
