@@ -18,7 +18,7 @@ const main = async () => {
 
   const prompt = new MultiSelect({
     name: 'packages',
-    message: 'Choose the package you wish to lint',
+    message: 'Choose the package you wish to format',
     limit: 10,
     choices: options,
     result(names) {
@@ -27,25 +27,15 @@ const main = async () => {
   });
 
   const answers = await prompt.run();
-  const filesToLint = Object.values(answers);
+  const filesToTest = Object.keys(answers).map((pkg) => `--scope=${pkg}`);
 
-  if (filesToLint.length === 0) {
+  if (filesToTest.length === 0) {
     console.log('No file chosen');
     process.exit(1);
   }
 
-  const eslintArgs = ['eslint', '--fix', ...filesToLint];
-
-  spawn('npx', eslintArgs, {
-    stdio: 'inherit',
-    shell: true,
-  }).on('close', (code) => {
-    if (code === 0) {
-      console.log('eslint finished formatting');
-    } else {
-      console.log(`eslint process exited with code ${code}`);
-    }
-  });
+  const lernaArgs = ['run', 'test', ...filesToTest];
+  spawn('lerna', lernaArgs, { stdio: 'inherit' });
 };
 
 main();

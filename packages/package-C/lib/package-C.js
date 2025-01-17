@@ -1,7 +1,7 @@
-'use strict'
+'use strict';
 
-module.exports = packageC
+module.exports = packageC;
 
 function packageC() {
-  return 'Hello from packageC'
+  return 'Hello from packageC';
 }

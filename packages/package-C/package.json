@@ -21,7 +21,7 @@
     "url": "git+https://github.com/asde29873012549/lang-packages.git"
   },
   "scripts": {
-    "test": "node ./__tests__/@lang/package-C.test.js"
+    "test": "node ./__tests__/package-C.test.js"
   },
   "bugs": {
     "url": "https://github.com/asde29873012549/lang-packages/issues"

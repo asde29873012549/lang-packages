@@ -6,9 +6,11 @@
   ],
   "scripts": {
     "lint": "node scripts/lint.js",
-    "lint:all": "eslint .",
+    "lint:all": "eslint . --fix",
     "format": "node scripts/format.js",
     "format:all": "prettier --write .",
+    "test": "node scripts/test.js",
+    "test:all": "lerna run test",
     "create": "lerna create",
     "bump": "lerna version",
     "publish": "lerna publish from-git",

@@ -15,33 +15,33 @@ class Config {
     multiplier: 1,
     transformRuntime: false,
     transformJSX: false,
-  })
+  });
 
-  #config = Config.defaultConfig
+  #config = Config.defaultConfig;
 
   getConfig() {
-    return structuredClone(this.#config)
+    return structuredClone(this.#config);
   }
 
   setConfig(config) {
     if (!config || Object.prototype.toString.call(config) !== '[object Object]') {
-      throw new TypeError('Config must be an object')
+      throw new TypeError('Config must be an object');
     }
 
     Object.keys(config).forEach((key) => {
       if (!Object.keys(this.#config).includes(key)) {
-        throw new Error(`Unknown config option: ${key}`)
+        throw new Error(`Unknown config option: ${key}`);
       }
-    })
+    });
 
-    this.#config = Object.assign({}, this.#config, config)
+    this.#config = Object.assign({}, this.#config, config);
 
-    return this.getConfig()
+    return this.getConfig();
   }
 
   resetConfig() {
-    this.#config = Config.defaultConfig
+    this.#config = Config.defaultConfig;
   }
 }
 
-module.exports = new Config()
+module.exports = new Config();

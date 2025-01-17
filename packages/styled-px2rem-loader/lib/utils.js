@@ -13,71 +13,71 @@ const {
   isFunctionDeclaration,
   isFunctionExpression,
   isBlockStatement,
-} = require('@babel/types')
+} = require('@babel/types');
 
-const Config = require('./config')
-const { DISABLE_COMMENT_REGEX } = require('./constants')
+const Config = require('./config');
+const { DISABLE_COMMENT_REGEX } = require('./constants');
 
 // Handle cases like keyframes`...`
 const isStyledIdentifier = (identifier) => {
   // options: styled, css, createGlobalStyle, keyframes
-  const { tags } = Config.getConfig()
-  return tags.includes(identifier.name)
-}
+  const { tags } = Config.getConfig();
+  return tags.includes(identifier.name);
+};
 
 // Handle cases like styled.div`...`
 const isStyledMember = (member) => {
   if (isIdentifier(member.object)) {
-    return isStyledIdentifier(member.object)
+    return isStyledIdentifier(member.object);
   }
 
   if (isMemberExpression(member.object)) {
-    return isStyledMember(member.object)
+    return isStyledMember(member.object);
   }
 
-  return false
-}
+  return false;
+};
 
 // Handle cases like styled(Component)`...`
 const isStyledFunction = (callExpression) => {
-  const { callee } = callExpression.node || callExpression || {}
+  const { callee } = callExpression.node || callExpression || {};
   if (isIdentifier(callee)) {
-    return isStyledIdentifier(callee)
+    return isStyledIdentifier(callee);
   }
 
   if (isMemberExpression(callee)) {
-    return isStyledMember(callee)
+    return isStyledMember(callee);
   }
 
   if (isCallExpression(callee)) {
-    return isStyledFunction(callee)
+    return isStyledFunction(callee);
   }
 
-  return false
-}
+  return false;
+};
 
 // General check for styled components
 const isStyledTag = (taggedTemplateLiteral) => {
-  const { tag } = taggedTemplateLiteral.node || taggedTemplateLiteral || {}
+  const { tag } = taggedTemplateLiteral.node || taggedTemplateLiteral || {};
 
   if (!tag) {
-    return false
+    return false;
   }
 
   if (isIdentifier(tag)) {
-    return isStyledIdentifier(tag)
+    return isStyledIdentifier(tag);
   }
 
   if (isMemberExpression(tag)) {
-    return isStyledMember(tag)
+    return isStyledMember(tag);
   }
 
   if (isCallExpression(tag)) {
-    return isStyledFunction(tag)
+    return isStyledFunction(tag);
   }
 
-  return false
-}
+  return false;
+};
 
 const isPureExpression = (expression) =>
   // margin: ${size}px;
@@ -97,47 +97,47 @@ const isPureExpression = (expression) =>
   // margin: ${obj?.size}px;
   isOptionalMemberExpression(expression) ||
   // margin: ${a && b}px;
-  isLogicalExpression(expression)
+  isLogicalExpression(expression);
 
-const getComponentName = (id) => (id && isIdentifier(id) ? id.name : null)
+const getComponentName = (id) => (id && isIdentifier(id) ? id.name : null);
 
 const isReturnJSX = (blockStatementPath) => {
-  let hasJSX = false
+  let hasJSX = false;
   blockStatementPath.traverse({
     ReturnStatement(path) {
-      const argument = path.get('argument')
+      const argument = path.get('argument');
       if (isJSXElement(argument)) {
-        hasJSX = true
+        hasJSX = true;
       }
     },
-  })
-  return hasJSX
-}
+  });
+  return hasJSX;
+};
 
 const isReactComponent = (id, path) => {
   // early check for valid component name before expensive traversal
-  const componentName = getComponentName(id)
-  if (!componentName || componentName[0] !== componentName[0].toUpperCase() || !path?.node) return false
+  const componentName = getComponentName(id);
+  if (!componentName || componentName[0] !== componentName[0].toUpperCase() || !path?.node) return false;
 
-  const bodyPath = path.get('body')
+  const bodyPath = path.get('body');
 
   // Arrow function component
   if (isArrowFunctionExpression(path.node)) {
-    return isJSXElement(bodyPath.node) || (isBlockStatement(bodyPath.node) && isReturnJSX(bodyPath))
+    return isJSXElement(bodyPath.node) || (isBlockStatement(bodyPath.node) && isReturnJSX(bodyPath));
   }
 
   // Regular function component
   if (isFunctionDeclaration(path.node) || isFunctionExpression(path.node)) {
-    return isReturnJSX(bodyPath)
+    return isReturnJSX(bodyPath);
   }
-  return false
-}
+  return false;
+};
 
 const isFileDisabledByComment = (programPath) => {
-  const comments = programPath.node?.body[0]?.leadingComments || []
-  const isCommentBlock = (node) => node.type === 'CommentBlock'
-  return comments.some((comment) => isCommentBlock(comment) && DISABLE_COMMENT_REGEX.test(comment.value))
-}
+  const comments = programPath.node?.body[0]?.leadingComments || [];
+  const isCommentBlock = (node) => node.type === 'CommentBlock';
+  return comments.some((comment) => isCommentBlock(comment) && DISABLE_COMMENT_REGEX.test(comment.value));
+};
 
 module.exports = {
   isStyledTag,
@@ -146,4 +146,4 @@ module.exports = {
   isReturnJSX,
   isReactComponent,
   isFileDisabledByComment,
-}
+};
