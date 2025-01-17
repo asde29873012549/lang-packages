@@ -26,7 +26,7 @@ To use the `styled-px2rem-loader`, add it to your Webpack configuration:
 
 ```javascript
 // webpack.config.js
-const path = require("path");
+const path = require('path')
 
 module.exports = {
   // ... other configurations ...
@@ -36,9 +36,9 @@ module.exports = {
         test: /\.(js|jsx)$/,
         use: [
           {
-            loader: "styled-px2rem-loader",
-            include: [path.resolve(__dirname, "src")],
-            exclude: [path.resolve(__dirname, "src/files/to/exclude/")],
+            loader: 'styled-px2rem-loader',
+            include: [path.resolve(__dirname, 'src')],
+            exclude: [path.resolve(__dirname, 'src/files/to/exclude/')],
             options: {
               rootValue: 16, // Base font size for conversion
               unitPrecision: 5, // Decimal places in rem values
@@ -53,7 +53,7 @@ module.exports = {
       },
     ],
   },
-};
+}
 ```
 
 ## Example
@@ -65,13 +65,13 @@ module.exports = {
 const Button = styled.button`
   padding: 10px;
   margin: ${(props) => props.margin}px;
-`;
+`
 
 // After transformation
 const Button = styled.button`
   padding: 0.625rem; // 10px converted to rem
   margin: ${_px2rem((props) => props.margin)}; // Dynamic margin conversion
-`;
+`
 ```
 
 ### React Components
@@ -79,17 +79,17 @@ const Button = styled.button`
 ```javascript
 // Before
 const Component = () => (
-  <div style={{ padding: "16px", margin: `${size}px` }}>
+  <div style={{ padding: '16px', margin: `${size}px` }}>
     <span margin="16px" />
   </div>
-);
+)
 
 // After transformation
 const Component = () => (
-  <div style={{ padding: "1rem", margin: `${_px2rem(size)}` }}>
+  <div style={{ padding: '1rem', margin: `${_px2rem(size)}` }}>
     <span margin="4.267px" />
   </div>
-);
+)
 ```
 
 ## Configuration Options

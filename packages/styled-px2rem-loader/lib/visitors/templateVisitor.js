@@ -1,29 +1,29 @@
-const replacePxToRemInCss = require("../replace");
+const replacePxToRemInCss = require('../replace')
 
 const createTemplateVisitor = (config, transformRuntime) => ({
   TemplateElement(templateElementPath) {
-    const { value } = templateElementPath.node || {};
-    const { raw, cooked } = value || {};
-    if (!raw || !cooked) return;
+    const { value } = templateElementPath.node || {}
+    const { raw, cooked } = value || {}
+    if (!raw || !cooked) return
 
-    value.raw = replacePxToRemInCss(raw);
-    value.cooked = replacePxToRemInCss(cooked);
+    value.raw = replacePxToRemInCss(raw)
+    value.cooked = replacePxToRemInCss(cooked)
   },
 
   StringLiteral(stringLiteralPath) {
-    const { value } = stringLiteralPath.node || {};
-    if (!value) return;
+    const { value } = stringLiteralPath.node || {}
+    if (!value) return
 
-    stringLiteralPath.node.value = replacePxToRemInCss(value);
+    stringLiteralPath.node.value = replacePxToRemInCss(value)
   },
 
   ...(config.transformRuntime
     ? {
         TemplateLiteral(templateLiteralPath) {
-          transformRuntime(templateLiteralPath);
+          transformRuntime(templateLiteralPath)
         },
       }
     : {}),
-});
+})
 
-module.exports = { createTemplateVisitor };
+module.exports = { createTemplateVisitor }

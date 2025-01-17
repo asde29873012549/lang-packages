@@ -1,7 +1,7 @@
-'use strict';
+'use strict'
 
-const packageC = require('..');
-const assert = require('assert').strict;
+const packageC = require('..')
+const assert = require('assert').strict
 
-assert.strictEqual(packageC(), 'Hello from packageC');
-console.info('packageC tests passed');
+assert.strictEqual(packageC(), 'Hello from packageC')
+console.info('packageC tests passed')
